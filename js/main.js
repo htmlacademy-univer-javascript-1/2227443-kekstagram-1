@@ -5,10 +5,10 @@ function getRandomInt(from, to) {
   return Math.floor(result);
 }
 
-function checkStringLength(str, maxLength) {
-  return str.length <= maxLength;
-}
-checkStringLength();
+// function checkStringLength(str, maxLength) {
+//   return str.length <= maxLength;
+// }
+// checkStringLength();
 
 const MIN_LIKES_NUMBER = 15;
 const MAX_LIKES_NUMBER = 200;
@@ -52,16 +52,17 @@ const getRandomMessage = () => MESSAGES[getRandomInt(0, MESSAGES.length - 1)];
 const createComment = () => ({
   id: getRandomInt(1, 10000),
   avatar: `img/avatar-${getRandomInt(1, MAX_AVATARS_NUMBER)}.svg`,
-  message: getRandomMessage,
-  name: getRandomName
+  message: getRandomMessage(),
+  name: getRandomName()
 });
 
 const photos = Array.from({length: 25}).map((value, index) => ({
   id: index + 1,
-  url: `photos/${index + 1}`,
-  description: getRandomDescription,
+  url: `photos/${index + 1}.jpg`,
+  description: getRandomDescription(),
   likes: getRandomInt(MIN_LIKES_NUMBER, MAX_LIKES_NUMBER),
-  comments: Array.from({length: getRandomInt(1, 3)}, createComment)
+  comments: Array.from({length: getRandomInt(1, 3)}).map(() => createComment())
 }));
 
-photos.forEach(print);
+// eslint-disable-next-line no-console
+console.log(photos);

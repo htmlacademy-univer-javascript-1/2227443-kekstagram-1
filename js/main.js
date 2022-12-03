@@ -66,3 +66,5 @@ const photos = Array.from({length: 25}).map((value, index) => ({
 
 // eslint-disable-next-line no-console
 console.log(photos);
+// eslint-disable-next-line no-console
+console.log(Array.from({length: getRandomInt(1, 3)}).map(() => createComment()));

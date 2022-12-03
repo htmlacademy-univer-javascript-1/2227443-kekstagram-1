@@ -10,12 +10,9 @@ function checkStringLength(str, maxLength) {
 }
 checkStringLength();
 
-const MAX_ID_NUMBER = 25;
-const MAX_URL_NUMBER = 25;
 const MIN_LIKES_NUMBER = 15;
 const MAX_LIKES_NUMBER = 200;
 const MAX_AVATARS_NUMBER = 6;
-
 
 const MESSAGES = [
   'Всё отлично!',
@@ -59,21 +56,12 @@ const createComment = () => ({
   name: getRandomName
 });
 
-const createPhotoDescription = (id) => ({
-  id: id,
-  url: `photos/${getRandomInt(1, MAX_URL_NUMBER)}`,
+const photos = Array.from({length: 25}).map((value, index) => ({
+  id: index + 1,
+  url: `photos/${index + 1}`,
   description: getRandomDescription,
   likes: getRandomInt(MIN_LIKES_NUMBER, MAX_LIKES_NUMBER),
   comments: Array.from({length: getRandomInt(1, 3)}, createComment)
-});
+}));
 
-
-const createPhotoDescriptions = () => {
-  const photoDescriptions = [];
-  for (let i = 0; i < MAX_ID_NUMBER; i++) {
-    photoDescriptions.push(createPhotoDescription(i));
-  }
-  return photoDescriptions;
-};
-
-createPhotoDescriptions();
+photos.forEach(print);

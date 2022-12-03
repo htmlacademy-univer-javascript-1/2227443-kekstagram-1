@@ -8,7 +8,6 @@ function getRandomInt(from, to) {
 function checkStringLength(str, maxLength) {
   return str.length <= maxLength;
 }
-
 checkStringLength();
 
 const MAX_ID_NUMBER = 25;

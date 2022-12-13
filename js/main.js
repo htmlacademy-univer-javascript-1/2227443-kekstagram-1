@@ -1,4 +1,3 @@
-import {photos} from './data';
+import {renderPictures} from './add-picture.js';
 
-// eslint-disable-next-line no-console
-console.log(photos);
+renderPictures();

@@ -15,11 +15,13 @@ const MESSAGES = [
 ];
 
 const DESCRIPTIONS = [
-  'Очень красивая фотография',
-  'я хейтер',
-  'Ты фотошопишь фотографии или действительно такая красивая?',
+  'красивая фотография',
+  'это я',
+  'ставьте лайки!',
   'Красивая фотография',
-  'Некрасивая фотография'
+  'Некрасивая фотография',
+  'В кекстаграм я лучше, чем в Инстаграм',
+  'не придумал описание'
 ];
 
 const NAMES = [
@@ -38,8 +40,9 @@ const NAMES = [
 
 const getRandomArrayElement = (array) => array[getRandomInt(0, array.length - 1)];
 
+let commentIndex = 1;
 const createComment = () => ({
-  id: getRandomInt(1, 10000),
+  id: commentIndex++,
   avatar: `img/avatar-${getRandomInt(1, MAX_AVATARS_NUMBER)}.svg`,
   message: getRandomArrayElement(MESSAGES),
   name: getRandomArrayElement(NAMES)

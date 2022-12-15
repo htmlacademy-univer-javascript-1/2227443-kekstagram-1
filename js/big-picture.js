@@ -1,6 +1,6 @@
 import {isEscapeKey} from './util.js';
 
-const INIT_COMMENTS_COUNT = 1;
+const INIT_COMMENTS_COUNT = 5;
 const COMMENTS_COUNT_STEP = 5;
 
 const bigPicture = document.querySelector('.big-picture');

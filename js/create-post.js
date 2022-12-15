@@ -19,12 +19,10 @@ const pristine = new Pristine(imageUploadForm, {
   successClass: 'has-success',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextTag: 'div',
-  errorTextClass: 'text-help'
+  errorTextClass: 'text-invalid__error'
 }, true);
 
-function isHashtagValid(hashtag) {
-  return HASHTAG_REGEX.test(hashtag);
-}
+const isHashtagValid = (hashtag) => HASHTAG_REGEX.test(hashtag);
 
 const isHashtagsValid = (value) => {
   if (value.length === 0) {
@@ -90,10 +88,12 @@ function closeOverlay() {
   closeFormButton.removeEventListener('click', closeOverlay);
 }
 
-export const createPostImageForm = function () {
+export const createPostImageForm = () => {
   imageUploadForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    pristine.validate();
+    const isValid = pristine.validate();
+    if (!isValid) {
+      evt.preventDefault();
+    }
   });
 
   fileUploadButton.addEventListener('change', () => {

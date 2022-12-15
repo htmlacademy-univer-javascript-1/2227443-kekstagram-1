@@ -53,7 +53,7 @@ const pictures = Array.from({length: PICTURES_NUMBER }).map((value, index) => ({
   url: `photos/${index + 1}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInt(MIN_LIKES_NUMBER, MAX_LIKES_NUMBER),
-  comments: Array.from({length: getRandomInt(1, 3)}).map(() => createComment())
+  comments: Array.from({length: getRandomInt(1, 15)}).map(() => createComment())
 }));
 
 export {pictures};

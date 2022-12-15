@@ -42,6 +42,11 @@ const onBigPictureKeydown = (evt) => {
   }
 };
 
+const onCloseButtonClick = () => {
+  document.removeEventListener('keydown', onBigPictureKeydown);
+  closeBigPicture();
+};
+
 export const showBigPicture = function (url, likes, comments, description) {
   document.body.classList.add('modal-open');
   bigPicture.classList.remove('hidden');
@@ -55,7 +60,7 @@ export const showBigPicture = function (url, likes, comments, description) {
   bigPictureDescription.textContent = description;
 
   document.addEventListener('keydown', onBigPictureKeydown);
-  buttonCloseElement.addEventListener('click', closeBigPicture, {once: true});
+  buttonCloseElement.addEventListener('click', onCloseButtonClick, {once: true});
 };
 
 

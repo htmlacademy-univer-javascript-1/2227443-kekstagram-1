@@ -1,6 +1,6 @@
 import {getRandomInt} from './util.js';
 
-const PHOTOS_NUMBER = 25;
+const PICTURES_NUMBER = 25;
 const MIN_LIKES_NUMBER = 15;
 const MAX_LIKES_NUMBER = 200;
 const MAX_AVATARS_NUMBER = 6;
@@ -48,7 +48,7 @@ const createComment = () => ({
   name: getRandomArrayElement(NAMES)
 });
 
-const photos = Array.from({length: PHOTOS_NUMBER }).map((value, index) => ({
+const pictures = Array.from({length: PICTURES_NUMBER }).map((value, index) => ({
   id: index + 1,
   url: `photos/${index + 1}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
@@ -56,4 +56,4 @@ const photos = Array.from({length: PHOTOS_NUMBER }).map((value, index) => ({
   comments: Array.from({length: getRandomInt(1, 3)}).map(() => createComment())
 }));
 
-export {photos};
+export {pictures};

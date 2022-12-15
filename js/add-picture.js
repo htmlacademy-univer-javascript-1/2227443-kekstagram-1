@@ -1,4 +1,4 @@
-import {photos} from './data.js';
+import {pictures} from './data.js';
 import {showBigPicture} from './big-picture.js';
 
 const pictureTemplate = document.querySelector('#picture').content
@@ -6,23 +6,19 @@ const pictureTemplate = document.querySelector('#picture').content
 
 const pictureListFragment = document.createDocumentFragment();
 
-const createPicture = () => {
-  photos.forEach(({url, likes, comments, description}) => {
-    const photoElement = pictureTemplate.cloneNode(true);
+const createPictureElement = ({url, likes, comments, description}) => {
+  const pictureElement = pictureTemplate.cloneNode(true);
+  pictureElement.querySelector('.picture__img').src = url;
+  pictureElement.querySelector('.picture__comments').textContent = comments.length;
+  pictureElement.querySelector('.picture__likes').textContent = likes;
 
-    photoElement.querySelector('.picture__img').src = url;
-    photoElement.querySelector('.picture__comments').textContent = comments.length;
-    photoElement.querySelector('.picture__likes').textContent = likes;
-
-    photoElement.addEventListener('click', () => {
-      showBigPicture(url, likes, comments, description);
-    });
-
-    pictureListFragment.appendChild(photoElement);
+  pictureElement.addEventListener('click', () => {
+    showBigPicture(url, likes, comments, description);
   });
+  pictureListFragment.appendChild(pictureElement);
 };
 
 export const renderPictures = () => {
-  createPicture();
+  pictures.forEach(createPictureElement);
   document.querySelector('.pictures').appendChild(pictureListFragment);
 };

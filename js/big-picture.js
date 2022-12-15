@@ -15,12 +15,11 @@ const commentTemplate = document.querySelector('#comment').content
 
 const buttonCloseElement = document.querySelector('#picture-cancel');
 
-
 let currentComments;
 let renderedComments;
 let currentCommentsCount;
 
-const createComment = function ({avatar, name, message}) {
+const createComment = ({avatar, name, message}) => {
   const commentElement = commentTemplate.cloneNode(true);
   commentElement.querySelector('.social__picture').src = avatar;
   commentElement.querySelector('.social__picture').alt = name;
@@ -28,7 +27,7 @@ const createComment = function ({avatar, name, message}) {
   return commentElement;
 };
 
-const createComments = function (commentsCount) {
+const createComments = (commentsCount) => {
   const commentsFragment = document.createDocumentFragment();
   while (commentsCount > 0 && renderedComments !== currentCommentsCount) {
     const commentElement = createComment(currentComments[renderedComments]);
@@ -62,7 +61,7 @@ const onCommentsLoadButtonClick = () => {
   createComments(COMMENTS_COUNT_STEP);
 };
 
-export const showBigPicture = function (url, likes, comments, description) {
+export const showBigPicture = (url, likes, comments, description) => {
   document.body.classList.add('modal-open');
   bigPicture.classList.remove('hidden');
   commentsCountElement.parentElement.classList.remove('hidden');
@@ -81,7 +80,7 @@ export const showBigPicture = function (url, likes, comments, description) {
     commentsLoaderElement.classList.add('hidden');
   } else {
     commentsLoaderElement.classList.remove('hidden');
-    commentsLoaderElement.addEventListener('click',onCommentsLoadButtonClick);
+    commentsLoaderElement.addEventListener('click', onCommentsLoadButtonClick);
   }
 
   const initCommentsCount = currentCommentsCount <= INIT_COMMENTS_COUNT ? currentCommentsCount : INIT_COMMENTS_COUNT;

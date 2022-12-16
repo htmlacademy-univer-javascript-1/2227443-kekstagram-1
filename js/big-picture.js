@@ -89,5 +89,3 @@ export const showBigPicture = ({url, likes, comments, description}) => {
   document.addEventListener('keydown', onBigPictureKeydown);
   buttonCloseElement.addEventListener('click', closeBigPicture, {once: true});
 };
-
-

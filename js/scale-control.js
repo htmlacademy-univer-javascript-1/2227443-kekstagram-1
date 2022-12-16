@@ -1,4 +1,3 @@
-
 const scaleValueElement = document.querySelector('.scale__control--value');
 const scaleControl = document.querySelector('.img-upload__scale');
 const imagePreview = document.querySelector('.img-upload__preview');

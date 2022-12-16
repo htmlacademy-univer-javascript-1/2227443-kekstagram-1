@@ -1,5 +1,6 @@
 import {isEscapeKey} from './util.js';
 import {pristine} from './validate.js';
+import {resetScale, renderPreview} from './scale-control.js';
 
 const fileUploadButton = document.querySelector('#upload-file');
 const overlay = document.querySelector('.img-upload__overlay');
@@ -16,6 +17,7 @@ const onEscKeydown = (evt) => {
 
 function closeOverlay() {
   imageUploadForm.reset();
+  resetScale();
   overlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onEscKeydown);
@@ -31,6 +33,7 @@ export const createPostImageForm = () => {
   });
 
   fileUploadButton.addEventListener('change', () => {
+    renderPreview();
     document.addEventListener('keydown', onEscKeydown);
     closeFormButton.addEventListener('click', closeOverlay, {once: true});
     document.body.classList.add('modal-open');

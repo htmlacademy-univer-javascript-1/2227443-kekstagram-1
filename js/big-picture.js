@@ -61,7 +61,7 @@ const onCommentsLoadButtonClick = () => {
   createComments(COMMENTS_COUNT_STEP);
 };
 
-export const showBigPicture = (url, likes, comments, description) => {
+export const showBigPicture = ({url, likes, comments, description}) => {
   document.body.classList.add('modal-open');
   bigPicture.classList.remove('hidden');
   commentsCountElement.parentElement.classList.remove('hidden');
@@ -89,5 +89,3 @@ export const showBigPicture = (url, likes, comments, description) => {
   document.addEventListener('keydown', onBigPictureKeydown);
   buttonCloseElement.addEventListener('click', closeBigPicture, {once: true});
 };
-
-

@@ -1,4 +1,3 @@
-import {pictures} from './data.js';
 import {showBigPicture} from './big-picture.js';
 
 const pictureTemplate = document.querySelector('#picture').content
@@ -6,6 +5,7 @@ const pictureTemplate = document.querySelector('#picture').content
 
 const pictureListElement = document.querySelector('.pictures');
 const pictureListFragment = document.createDocumentFragment();
+let loadedPhotos;
 
 const createPictureElement = ({id, url, likes, comments}) => {
   const pictureElement = pictureTemplate.cloneNode(true);
@@ -19,14 +19,15 @@ const createPictureElement = ({id, url, likes, comments}) => {
 const onPictureClick = (evt) => {
   const pictureElement = evt.target.closest('.picture');
   if (pictureElement) {
-    const clickedPhoto = pictures.find(
+    const clickedPhoto = loadedPhotos.find(
       ({id}) => Number(pictureElement. dataset.id) === id);
     showBigPicture(clickedPhoto);
   }
 };
 
-export const renderPictures = () => {
-  pictures.forEach(createPictureElement);
+export const renderPictures = (photos) => {
+  photos.forEach(createPictureElement);
+  loadedPhotos = photos;
   pictureListElement.appendChild(pictureListFragment);
   pictureListElement.addEventListener('click', onPictureClick);
 };

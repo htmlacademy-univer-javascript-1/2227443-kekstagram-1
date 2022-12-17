@@ -51,47 +51,56 @@ const createPostImageForm = () => {
 const createSuccessBlock = () => {
   const successCopy = successTemplate.cloneNode(true).content.querySelector('.success');
 
-  successCopy.addEventListener(
-    'click',
-    (evt) => {
-      if (evt.target.className !== 'success__inner' && evt.target.className !== 'success__title') {
-        document.body.removeChild(successCopy);
-        closeOverlay();
-      }
-    });
-  document.body.appendChild(successCopy);
+  const closeSuccessBlock = (evt) => {
+    if (evt.target.className !== 'success__inner' && evt.target.className !== 'success__title'
+      || isEscapeKey(evt.key)) {
+      overlay.removeChild(successCopy);
+      document.removeEventListener('keydown', closeSuccessBlock);
+      closeOverlay();
+    }
+  };
+  successCopy.addEventListener('keydown', closeSuccessBlock);
+  successCopy.addEventListener('click', closeSuccessBlock);
+
+  overlay.appendChild(successCopy);
 };
 
 const createErrorBlock = (text) => {
   const errorCopy = errorTemplate.cloneNode(true).content.querySelector('.error');
   errorCopy.querySelector('.error__title').textContent = text;
 
-  errorCopy.addEventListener(
-    'click',
-    (evt) => {
-      if (evt.target.className !== 'error__inner' && evt.target.className !== 'error__title') {
-        document.body.removeChild(errorCopy);
-      }
-    });
-  document.body.appendChild(errorCopy);
+  const closeErrorBlock = (evt) => {
+    if (evt.target.className !== 'error__inner' && evt.target.className !== 'error__title'
+      || isEscapeKey(evt.key)) {
+      overlay.removeChild(errorCopy);
+      errorCopy.removeEventListener('keydown', closeErrorBlock);
+      document.addEventListener('keydown', onEscKeydown);
+    }
+  };
+  document.removeEventListener('keydown', onEscKeydown);
+
+  document.addEventListener('keydown', closeErrorBlock);
+  errorCopy.addEventListener('click', closeErrorBlock);
+
+  overlay.appendChild(errorCopy);
+};
+
+const onUploadFormSubmit = (evt) => {
+  evt.preventDefault();
+  const isValid = pristine.validate();
+  if (isValid) {
+    submitFormElement.textContent = 'Опубликовать';
+    sendData(
+      createErrorBlock,
+      createSuccessBlock,
+      new FormData(form));
+  } else {
+    submitFormElement.textContent = 'Проверьте введенные данные...';
+  }
 };
 
 export const renderFileUpload = () => {
-  imageUploadForm.addEventListener('submit',
-    (evt) => {
-      evt.preventDefault();
-      const isValid = pristine.validate();
-      if (isValid) {
-        submitFormElement.textContent = 'Опубликовать';
-        sendData(
-          createErrorBlock,
-          createSuccessBlock,
-          new FormData(form));
-        closeOverlay();
-      } else {
-        submitFormElement.textContent = 'Проверьте введенные данные...';
-      }
-    });
+  imageUploadForm.addEventListener('submit', onUploadFormSubmit);
   createPostImageForm();
   resetEffect();
   resetScale();

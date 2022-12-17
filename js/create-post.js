@@ -29,6 +29,7 @@ const resetAll = () => {
   resetEffect();
   overlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
+  submitFormElement.textContent = 'Опубликовать';
 };
 
 function closeOverlay() {

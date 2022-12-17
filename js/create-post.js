@@ -59,7 +59,7 @@ const createSuccessBlock = () => {
       closeOverlay();
     }
   };
-  successCopy.addEventListener('keydown', closeSuccessBlock);
+  document.addEventListener('keydown', closeSuccessBlock);
   successCopy.addEventListener('click', closeSuccessBlock);
 
   overlay.appendChild(successCopy);

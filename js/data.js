@@ -138,4 +138,12 @@ const pictures = Array.from({length: PICTURES_NUMBER }).map((value, index) => ({
   comments: Array.from({length: getRandomInt(1, 15)}).map(() => createComment())
 }));
 
-export {pictures};
+const errorPictures = Array.from({length:PICTURES_NUMBER}).map((value, index) => ({
+  id: index + 1,
+  url: 'photos/error.jpg',
+  description: 'Ошибка загрузки фотографии',
+  likes: '-',
+  comments: []
+}));
+
+export {pictures, errorPictures};

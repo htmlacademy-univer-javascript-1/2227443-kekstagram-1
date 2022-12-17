@@ -1,5 +1,6 @@
 import {renderPictures} from './add-picture.js';
-import {createPostImageForm} from './create-post.js';
+import {renderFileUpload} from './create-post.js';
+import {getData} from './api.js';
 
-renderPictures();
-createPostImageForm();
+getData(renderPictures);
+renderFileUpload();

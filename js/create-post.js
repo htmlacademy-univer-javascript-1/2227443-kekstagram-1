@@ -18,6 +18,7 @@ const onEscKeydown = (evt) => {
 
 function closeOverlay() {
   imageUploadForm.reset();
+  pristine.reset();
   resetScale();
   resetEffect();
   overlay.classList.add('hidden');

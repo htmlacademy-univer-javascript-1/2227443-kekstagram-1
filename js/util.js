@@ -1,12 +1,5 @@
 const ESCAPE_KEY = 'Escape';
 
-const getRandomInt = (from, to) => {
-  const lower = Math.ceil(Math.min(Math.abs(from), Math.abs(to)));
-  const upper = Math.floor(Math.max(Math.abs(from), Math.abs(to)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
-
 function debounce (callback, timeoutDelay = 500) {
   // Используем замыкания, чтобы id таймаута у нас навсегда приклеился
   // к возвращаемой функции с setTimeout, тогда мы его сможем перезаписывать
@@ -62,4 +55,4 @@ const getRandomUniquePhotos = (photos, n) => {
 
 const isEscapeKey = (keycode) => keycode === ESCAPE_KEY;
 
-export {isEscapeKey, throttle, debounce, getRandomUniquePhotos, getRandomInt};
+export {isEscapeKey, throttle, debounce, getRandomUniquePhotos};

@@ -38,7 +38,7 @@ const NAMES = [
   'Авдотья'
 ];
 
-export const EFFECTS = {
+const EFFECTS = {
   'sepia': {
     'noui': {
       range: {
@@ -146,4 +146,4 @@ const errorPictures = Array.from({length:PICTURES_NUMBER}).map((value, index) =>
   comments: []
 }));
 
-export {pictures, errorPictures};
+export {pictures, errorPictures, EFFECTS};

@@ -18,9 +18,9 @@ const sendData = (onFail, onSuccess, body) => {
     .then((response) => {
       if (!response.ok) {
         if (response.status === 400) {
-          onFail('error' ,'Неверный формат файла!');
+          onFail('Неверный формат файла!');
         } else {
-          onFail('error', 'Данные не отправлены!');
+          onFail('Данные не отправлены!');
         }
       } else {
         onSuccess();

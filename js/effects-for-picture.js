@@ -10,6 +10,7 @@ const sliderField = document.querySelector('.img-upload__effect-level');
 let selectedEffect = DEFAULT_EFFECT;
 
 const applyEffect = () => {
+  previewImage.classList.value = 'img-upload__preview';
   previewImage.classList.add(`effects_preview--${selectedEffect}`);
   previewImage.style.filter = DEFAULT_EFFECT;
   effectLevelValue.value = slider.noUiSlider.get();

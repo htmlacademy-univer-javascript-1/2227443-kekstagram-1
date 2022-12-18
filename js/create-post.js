@@ -3,6 +3,8 @@ import {pristine} from './validate.js';
 import {resetScale, renderPreview} from './scale-control.js';
 import {renderSlider, resetEffect} from './effects-for-picture.js';
 import {sendData} from './api.js';
+import {onImgInputChange} from './input-picture.js';
+
 
 const form = document.querySelector('#upload-select-image');
 const fileUploadButton = document.querySelector('#upload-file');
@@ -40,7 +42,8 @@ function closeOverlay() {
 
 const createPostImageForm = () => {
   renderSlider();
-  fileUploadButton.addEventListener('change', () => {
+  fileUploadButton.addEventListener('change', (evt) => {
+    onImgInputChange(evt);
     renderPreview();
     document.addEventListener('keydown', onEscKeydown);
     closeFormButton.addEventListener('click', closeOverlay, {once: true});
@@ -62,7 +65,6 @@ const createSuccessBlock = () => {
   };
   document.addEventListener('keydown', closeSuccessBlock);
   successCopy.addEventListener('click', closeSuccessBlock);
-
   overlay.appendChild(successCopy);
 };
 
@@ -74,15 +76,13 @@ const createErrorBlock = (text) => {
     if (evt.target.className !== 'error__inner' && evt.target.className !== 'error__title'
       || isEscapeKey(evt.key)) {
       overlay.removeChild(errorCopy);
-      errorCopy.removeEventListener('keydown', closeErrorBlock);
+      document.removeEventListener('keydown', closeErrorBlock);
       document.addEventListener('keydown', onEscKeydown);
     }
   };
   document.removeEventListener('keydown', onEscKeydown);
-
   document.addEventListener('keydown', closeErrorBlock);
   errorCopy.addEventListener('click', closeErrorBlock);
-
   overlay.appendChild(errorCopy);
 };
 

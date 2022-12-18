@@ -8,18 +8,14 @@ const scaleControl = document.querySelector('.img-upload__scale');
 const imagePreview = document.querySelector('.img-upload__preview');
 
 const changeScale = (evt) => {
-  const valueInt = parseInt(
-    scaleValueElement.value.replace('%', ''),
-    10
-  );
-
+  let valueInt = parseInt(scaleValueElement.value.replace('%', ''),10);
   if (evt.target.closest('.scale__control--smaller') && valueInt > MIN_SCALE) {
-    scaleValueElement.value = `${valueInt - STEP}%`;
-    imagePreview.style.transform = `scale(${(valueInt - STEP) / 100})`;
+    valueInt -= STEP;
   } else if (evt.target.closest('.scale__control--bigger') && valueInt < MAX_SCALE) {
-    scaleValueElement.value = `${valueInt + STEP}%`;
-    imagePreview.style.transform = `scale(${(valueInt + STEP) / 100})`;
+    valueInt += STEP;
   }
+  scaleValueElement.value = `${valueInt}%`;
+  imagePreview.style.transform = `scale(${(valueInt) / 100})`;
 };
 
 export const renderPreview = () => {

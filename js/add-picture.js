@@ -7,6 +7,7 @@ const TIMEOUT_DELAY = 500;
 const pictureListElement = document.querySelector('.pictures');
 const pictureListFragment = document.createDocumentFragment();
 const filterButtons = document.querySelectorAll('.img-filters__button');
+const imgFilters = document.querySelector('.img-filters');
 const pictureTemplate = document.querySelector('#picture').content
   .querySelector('.picture');
 let loadedPhotos;
@@ -49,6 +50,7 @@ const renderPictures = (photos, option) => {
 
 const debounceRenderedPhotos = debounce(renderPictures, TIMEOUT_DELAY);
 const createEventListenersFilter = () => {
+  imgFilters.classList.remove('img-filters--inactive');
   filterButtons.forEach((filterButton) => {
     filterButton.addEventListener('click', () => {
       filterButtons.forEach((button) =>
